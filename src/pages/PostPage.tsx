@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 interface Post {
   id: number;
   title: string;
@@ -14,8 +15,6 @@ interface Post {
 export default function PostPage() {
   const { postId } = useParams<{ postId: string }>();
   const [post, setPost] = useState<Post | null>(null);
-
-  // error and loading
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -24,8 +23,7 @@ export default function PostPage() {
       try {
         const response = await fetch(
           `http://localhost:5000/api/v1/blog/${postId}`
-        ); // API endpoint
-
+        );
         const result: Post = await response.json();
         setPost(result);
       } catch (error: any) {
@@ -36,25 +34,104 @@ export default function PostPage() {
     };
 
     fetchData();
-  }, []);
+  }, [postId]);
 
-  if (loading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error}</div>;
-  if (!post) return <div>No post found.</div>;
+  if (loading)
+    return (
+      <div className="flex justify-center items-center min-h-screen">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+      </div>
+    );
+
+  if (error)
+    return (
+      <div className="p-4 bg-red-50 text-red-700 rounded-lg mx-4 my-8">
+        Error: {error}
+      </div>
+    );
+
+  if (!post) return <div>Post topilmadi</div>;
 
   return (
-    <div>
-      <h2>{post.title}</h2>
-      <p>
-        <strong>Author:</strong> {post.author.username}
-      </p>
-      <p>
-        <strong>Created:</strong> {new Date(post.createdAt).toLocaleString()}
-      </p>
-      <p>{post.summary}</p>
+    <div className="max-w-3xl mx-auto px-4 py-8">
+      {/* Orqaga link */}
+      <div className="mb-6">
+        <Link
+          to="/"
+          className="text-blue-600 hover:text-blue-800 flex items-center text-sm"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Barcha postlarga qaytish
+        </Link>
+      </div>
 
-      {/* HTML content */}
-      <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      {/* Sarlavha va metadata */}
+      <header className="mb-8">
+        <h1 className="text-3xl font-bold text-gray-900 mb-4">{post.title}</h1>
+
+        <div className="flex items-center text-sm text-gray-500 space-x-4">
+          <span className="font-medium text-gray-700">
+            {post.author.username}
+          </span>
+          <span className="text-gray-300">•</span>
+          <time dateTime={post.createdAt}>
+            {new Date(post.createdAt).toLocaleDateString("en-US", {
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}
+          </time>
+          <span className="text-gray-300">•</span>
+          <span>5 daqiqa o'qish</span>
+        </div>
+      </header>
+
+      {/* Qisqacha ma'lumot */}
+      <div className="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8">
+        <p className="text-gray-700 italic">{post.summary}</p>
+      </div>
+
+      {/* Asosiy kontent */}
+      <article className="prose max-w-none mb-8">
+        <div dangerouslySetInnerHTML={{ __html: post.content }} />
+      </article>
+
+      {/* Pastki separator */}
+      <div className="border-t pt-8 mt-8">
+        <Link
+          to="/"
+          className="text-blue-600 hover:text-blue-800 inline-flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4 mr-1"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M10 19l-7-7m0 0l7-7m-7 7h18"
+            />
+          </svg>
+          Barcha postlar ro'yxati
+        </Link>
+      </div>
     </div>
   );
 }

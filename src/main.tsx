@@ -3,18 +3,41 @@ import { createRoot } from "react-dom/client";
 import "./index.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import HomePage from "./pages/HomePage";
-import LoginPage from "./pages/LoginPage";
-import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/auth/LoginPage";
+import RegisterPage from "./pages/auth/RegisterPage";
 import PostPage from "./pages/PostPage";
 import CreatePostPage from "./pages/CreatePostPage";
 import ErrorPage from "./pages/ErrorPage";
+import ProtectedRoute from "./components/ProtectedRoute";
+import MyPostsPage from "./pages/MyPostPage";
+import MainLayout from "./layouts/MainLayout";
 
 const router = createBrowserRouter([
-  { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
+  {
+    path: "/",
+    element: <MainLayout />,
+    children: [
+      { path: "/", element: <HomePage />, errorElement: <ErrorPage /> },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/post/create",
+            element: <CreatePostPage />,
+          },
+          {
+            path: "/myposts",
+            element: <MyPostsPage />,
+          },
+        ],
+      },
+
+      { path: "/post/:postId", element: <PostPage /> },
+    ],
+  },
+
   { path: "/login", element: <LoginPage /> },
   { path: "/register", element: <RegisterPage /> },
-  { path: "/post/:postId", element: <PostPage /> },
-  { path: "/post/create", element: <CreatePostPage /> },
 ]);
 
 createRoot(document.getElementById("root")!).render(
