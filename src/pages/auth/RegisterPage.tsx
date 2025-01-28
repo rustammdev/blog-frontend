@@ -14,7 +14,7 @@ export default function RegisterPage() {
 
     try {
       const response = await fetch(
-        "http://13.60.184.232:5000/api/v1/auth/register",
+        "https:/api.lazydev.uz/api/v1/auth/register",
         {
           method: "POST",
           headers: {

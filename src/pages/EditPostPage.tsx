@@ -31,7 +31,7 @@ export default function EditPostPage() {
     const fetchPost = async () => {
       try {
         const response = await fetch(
-          `http://13.60.184.232:5000/api/v1/blog/${id}`,
+          `https://api.lazydev.uz/api/v1/blog/${id}`,
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
@@ -81,17 +81,14 @@ export default function EditPostPage() {
     };
 
     try {
-      const response = await fetch(
-        `http://13.60.184.232:5000/api/v1/blog/${id}`,
-        {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          body: JSON.stringify(updateData),
-        }
-      );
+      const response = await fetch(`https://api.lazydev.uz/api/v1/blog/${id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${accessToken}`,
+        },
+        body: JSON.stringify(updateData),
+      });
 
       if (!response.ok) {
         const errorData = await response.json();

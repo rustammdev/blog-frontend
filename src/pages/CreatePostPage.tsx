@@ -47,7 +47,7 @@ const CreatePostPage = () => {
         content,
       };
 
-      const response = await fetch("http://13.60.184.232:5000/api/v1/blog", {
+      const response = await fetch("https://api.lazydev.uz/api/v1/blog", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

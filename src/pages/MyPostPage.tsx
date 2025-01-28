@@ -25,7 +25,7 @@ export default function MyPostsPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://13.60.184.232:5000/api/v1/blog/user",
+          "https://api.lazydev.uz/api/v1/blog/user",
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,

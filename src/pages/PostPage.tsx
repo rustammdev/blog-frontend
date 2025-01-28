@@ -22,7 +22,7 @@ export default function PostPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://13.60.184.232:5000/api/v1/blog/${postId}`
+          `https://api.lazydev.uz/api/v1/blog/${postId}`
         );
         const result: Post = await response.json();
         setPost(result);
