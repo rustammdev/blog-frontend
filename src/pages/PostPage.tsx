@@ -11,7 +11,7 @@ interface Post {
     username: string;
   };
 }
-
+// test
 export default function PostPage() {
   const { postId } = useParams<{ postId: string }>();
   const [post, setPost] = useState<Post | null>(null);
