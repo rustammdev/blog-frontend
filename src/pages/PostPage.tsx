@@ -22,7 +22,7 @@ export default function PostPage() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/v1/blog/${postId}`
+          `http://13.60.184.232:5000/api/v1/blog/${postId}`
         );
         const result: Post = await response.json();
         setPost(result);
@@ -50,7 +50,7 @@ export default function PostPage() {
       </div>
     );
 
-  if (!post) return <div>Post topilmadi</div>;
+  if (!post) return <div>Сообщение не найдено</div>;
 
   return (
     <div className="max-w-3xl mx-auto px-4 py-8">
@@ -95,7 +95,7 @@ export default function PostPage() {
             })}
           </time>
           <span className="text-gray-300">•</span>
-          <span>5 daqiqa o'qish</span>
+          <span>5 минут на чтение</span>
         </div>
       </header>
 
@@ -129,7 +129,7 @@ export default function PostPage() {
               d="M10 19l-7-7m0 0l7-7m-7 7h18"
             />
           </svg>
-          Barcha postlar ro'yxati
+          Список всех сообщений
         </Link>
       </div>
     </div>

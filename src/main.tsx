@@ -11,6 +11,7 @@ import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./components/ProtectedRoute";
 import MyPostsPage from "./pages/MyPostPage";
 import MainLayout from "./layouts/MainLayout";
+import EditPostPage from "./pages/EditPostPage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ const router = createBrowserRouter([
           {
             path: "/myposts",
             element: <MyPostsPage />,
+          },
+          {
+            path: "/myposts/:id",
+            element: <EditPostPage />,
           },
         ],
       },

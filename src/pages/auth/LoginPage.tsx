@@ -14,13 +14,16 @@ export default function LoginPage() {
     setError(null);
 
     try {
-      const response = await fetch("http://localhost:5000/api/v1/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }),
-      });
+      const response = await fetch(
+        "http://13.60.184.232:5000/api/v1/auth/login",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ username, password }),
+        }
+      );
 
       const data = await response.json();
 
@@ -41,7 +44,7 @@ export default function LoginPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          Welcome Back
+          Добро пожаловать
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -117,7 +120,7 @@ export default function LoginPage() {
                     d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                   ></path>
                 </svg>
-                Processing...
+                Обработка...
               </>
             ) : (
               "Sign In"
@@ -127,12 +130,12 @@ export default function LoginPage() {
 
         <div className="mt-6 text-center text-sm text-gray-600">
           <p>
-            Don't have an account?{" "}
+            У вас нет учетной записи?{" "}
             <Link
               to="/register"
               className="text-blue-600 hover:text-blue-500 font-medium"
             >
-              Register here
+              Зарегистрируйтесь здесь
             </Link>
           </p>
         </div>

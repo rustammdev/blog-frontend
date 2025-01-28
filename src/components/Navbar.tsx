@@ -7,10 +7,11 @@ export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const allLinks = [
-    { url: "/login", name: "Login", isProtected: false },
-    { url: "/register", name: "Register", isProtected: false },
-    { url: "/post/create", name: "Create Post", isProtected: true },
-    { url: "/myposts", name: "My Posts", isProtected: true },
+    { url: "/", name: "Home", isProtected: isAuthenticated ? true : false },
+    { url: "/login", name: "Авторизоваться", isProtected: false },
+    { url: "/register", name: "Зарегистрироваться", isProtected: false },
+    { url: "/post/create", name: "Создать пост", isProtected: true },
+    { url: "/myposts", name: "Мои сообщения", isProtected: true },
   ];
 
   const filteredLinks = allLinks.filter((link) =>
@@ -20,9 +21,8 @@ export default function Navbar() {
   return (
     <nav className="bg-gray-800 p-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
-        {/* Chap tomondagi elementlar (hamburger + logo) */}
+        {/* Элементы левой стороны (гамбургер + логотип) */}
         <div className="flex items-center">
-          {/* Hamburger tugmasi (faqat mobilda) */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="md:hidden text-gray-300 hover:text-white focus:outline-none cursor-pointer"
@@ -56,9 +56,8 @@ export default function Navbar() {
           </button>
         </div>
 
-        {/* Desktop menyu va user info */}
+        {/*Меню рабочего стола и информация о пользователе */}
         <div className="hidden md:flex items-center gap-6">
-          {/* Desktop navigatsiya linklari */}
           <div className="flex items-center gap-4">
             {filteredLinks.map((item) => (
               <NavLink
@@ -80,12 +79,8 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop uchun user info va chiqish */}
           {isAuthenticated && (
             <div className="flex items-center gap-4">
-              <span className="text-gray-300 text-sm whitespace-nowrap">
-                Xush kelibsiz, foydalanuvchi!
-              </span>
               <button
                 onClick={() => {
                   localStorage.removeItem("accessToken");
@@ -93,13 +88,13 @@ export default function Navbar() {
                 }}
                 className="text-gray-300 hover:text-white  cursor-pointer text-sm px-3 py-1 font-bold rounded transition-colors whitespace-nowrap"
               >
-                Chiqish
+                Выход
               </button>
             </div>
           )}
         </div>
 
-        {/* Mobil menyu (faqat ochilganda ko'rinadi) */}
+        {/* Мобильное меню (видно только при открытии) */}
         {isMenuOpen && (
           <div className="absolute md:hidden top-16 left-0 right-0 bg-gray-800 p-4 space-y-2">
             {filteredLinks.map((item) => (
@@ -126,7 +121,7 @@ export default function Navbar() {
               <div className="pt-4 border-t border-gray-700">
                 <div className="flex items-center justify-between px-3 py-2">
                   <span className="text-gray-300 text-sm">
-                    Xush kelibsiz, foydalanuvchi!
+                    Добро пожаловать, пользователь!
                   </span>
                   <button
                     onClick={() => {
@@ -135,7 +130,7 @@ export default function Navbar() {
                     }}
                     className="text-gray-300 hover:text-white text-sm px-3 py-1 font-bold cursor-pointer rounded"
                   >
-                    Chiqish
+                    Выход
                   </button>
                 </div>
               </div>

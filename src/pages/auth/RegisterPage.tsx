@@ -14,7 +14,7 @@ export default function RegisterPage() {
 
     try {
       const response = await fetch(
-        "http://localhost:5000/api/v1/auth/register",
+        "http://13.60.184.232:5000/api/v1/auth/register",
         {
           method: "POST",
           headers: {
@@ -43,7 +43,7 @@ export default function RegisterPage() {
     <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
         <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
-          Welcome
+          Добро пожаловать
         </h2>
 
         <form onSubmit={handleSubmit} className="space-y-6">
@@ -129,12 +129,12 @@ export default function RegisterPage() {
 
         <div className="mt-6 text-center text-sm text-gray-600">
           <p>
-            Alredy have an account?{" "}
+            У вас уже есть аккаунт?{" "}
             <Link
               to="/login"
               className="text-blue-600 hover:text-blue-500 font-medium"
             >
-              Login here
+              Войти здесь
             </Link>
           </p>
         </div>

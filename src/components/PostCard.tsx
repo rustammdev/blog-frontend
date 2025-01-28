@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-// Interface'lar
+// Interfaces
 interface Author {
   username: string;
 }
@@ -27,7 +27,7 @@ export default function PostCard() {
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-  // Fake taglar uchun massiv
+  // Fake tag
   const fakeTags = [
     "Cooking",
     "Lifestyle",
@@ -39,7 +39,7 @@ export default function PostCard() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/v1/blog");
+        const response = await fetch("http://13.60.184.232:5000/api/v1/blog");
         const result: ApiResponse = await response.json();
         setPosts(result);
       } catch (error: any) {
@@ -77,7 +77,7 @@ export default function PostCard() {
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {posts?.data.map((post) => {
-          // Har bir post uchun random 2 tag
+          // Случайные 2 тега для каждого поста
           const randomTags = [...fakeTags]
             .sort(() => 0.5 - Math.random())
             .slice(0, 2);
