@@ -8,10 +8,10 @@ export default function Navbar() {
 
   const allLinks = [
     { url: "/", name: "Home", isProtected: isAuthenticated ? true : false },
-    { url: "/login", name: "Авторизоваться", isProtected: false },
-    { url: "/register", name: "Зарегистрироваться", isProtected: false },
+    { url: "/login", name: "Login", isProtected: false },
+    { url: "/register", name: "Register", isProtected: false },
     { url: "/post/create", name: "Создать пост", isProtected: true },
-    { url: "/myposts", name: "Мои сообщения", isProtected: true },
+    { url: "/myposts", name: "Мои пост", isProtected: true },
   ];
 
   const filteredLinks = allLinks.filter((link) =>

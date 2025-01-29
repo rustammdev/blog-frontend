@@ -48,7 +48,7 @@ export default function MyPostsPage() {
   const handleDelete = async (postId: number) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/v1/blog/${postId}`,
+        `https://api.lazydev.uz/api/v1/blog/${postId}`,
         {
           method: "DELETE",
           headers: {

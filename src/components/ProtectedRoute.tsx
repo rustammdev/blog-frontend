@@ -20,7 +20,7 @@ const ProtectedRoute = () => {
 
       try {
         const response = await fetch(
-          "http://13.60.184.232:5000/api/v1/auth/status",
+          "https://api.lazydev.uz/api/v1/auth/status",
           {
             headers: {
               Authorization: `Bearer ${accessToken}`,
